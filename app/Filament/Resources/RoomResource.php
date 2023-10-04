@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\HostelResource\Pages;
-use App\Filament\Resources\HostelResource\RelationManagers;
-use App\Models\Hostel;
+use App\Filament\Resources\RoomResource\Pages;
+use App\Filament\Resources\RoomResource\RelationManagers;
+use App\Models\Room;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class HostelResource extends Resource
+class RoomResource extends Resource
 {
-    protected static ?string $model = Hostel::class;
+    protected static ?string $model = Room::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,7 +23,7 @@ class HostelResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->label('Hostel Name')->required(),
+                //
             ]);
     }
 
@@ -31,15 +31,13 @@ class HostelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('name'),
-              
+                //
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -48,10 +46,19 @@ class HostelResource extends Resource
             ]);
     }
     
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+    
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageHostels::route('/'),
+            'index' => Pages\ListRooms::route('/'),
+            'create' => Pages\CreateRoom::route('/create'),
+            'edit' => Pages\EditRoom::route('/{record}/edit'),
         ];
     }    
 }
