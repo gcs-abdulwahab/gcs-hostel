@@ -7,6 +7,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,11 +17,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
+
+        $role_superadmin = Role::create(['name' => 'sadmin']);
+        $role_instituteadmin = Role::create(['name' => 'iadmin']);
+
+
+        $super_user = User::create([
             'name' => 'Admin Bilal',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('admin@admin.com'),
+            'email' => 'sadmin@example.com',
+            'password' => bcrypt('sadmin@example.com'),
         ]);
+
+        $super_user->assignRole($role_superadmin);
+
+
+        $user2 = User::create([
+            'name' => 'NON ADMIN',
+            'email' => 'iadmin@example.com',
+            'password' => bcrypt('iadmin@example.com'),
+        ]);
+        $user2->assignRole($role_instituteadmin);
+
+
+
+
 
 
         $this->call(HostelSeeder::class);
