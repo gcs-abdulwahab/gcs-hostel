@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\HostelResource\Pages;
-use App\Filament\Resources\HostelResource\RelationManagers;
-use App\Models\Hostel;
-use Faker\Provider\ar_EG\Text;
+use App\Filament\Resources\RoleResource\Pages;
+use App\Filament\Resources\RoleResource\RelationManagers;
+
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -15,10 +14,11 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Spatie\Permission\Models\Role as ModelsRole;
 
-class HostelResource extends Resource
+class RoleResource extends Resource
 {
-    protected static ?string $model = Hostel::class;
+    protected static ?string $model = Role::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -29,7 +29,7 @@ class HostelResource extends Resource
                 TextInput::make('name')
                     ->autofocus()
                     ->required()
-                    ->unique(Hostel::class, 'name')
+                    ->unique(Role::class, 'name')
                     ->max(255)
                     ->placeholder(__('Name')),
             ]);
@@ -42,6 +42,7 @@ class HostelResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable()
+
             ])
             ->filters([
                 //
@@ -59,16 +60,16 @@ class HostelResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\RoomsRelationManager::class,
+            //
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHostels::route('/'),
-            'create' => Pages\CreateHostel::route('/create'),
-            'edit' => Pages\EditHostel::route('/{record}/edit'),
+            'index' => Pages\ListRoles::route('/'),
+            'create' => Pages\CreateRole::route('/create'),
+            'edit' => Pages\EditRole::route('/{record}/edit'),
         ];
     }
 }

@@ -6,9 +6,13 @@ use App\Filament\Resources\RoomResource\Pages;
 use App\Filament\Resources\RoomResource\RelationManagers;
 use App\Models\Room;
 use Filament\Forms;
+use Filament\Forms\Components\BelongsToSelect;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,7 +27,15 @@ class RoomResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->autofocus()
+                    ->required()
+                    ->placeholder(__('Name')),
+
+                Select::make('hostel_id')
+                     ->relationship('hostel', 'name')
+                    ->required()
+                    ->placeholder(__('Hostel')),
             ]);
     }
 
@@ -31,13 +43,21 @@ class RoomResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('hostel.name')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                // delete action
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -45,14 +65,14 @@ class RoomResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -60,5 +80,5 @@ class RoomResource extends Resource
             'create' => Pages\CreateRoom::route('/create'),
             'edit' => Pages\EditRoom::route('/{record}/edit'),
         ];
-    }    
+    }
 }
