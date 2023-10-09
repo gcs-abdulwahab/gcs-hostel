@@ -47,6 +47,8 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentSeeder::class);
         $this->call(RoomSeeder::class);
 
+        $this->call(AllocationSeeder::class);
+
 
         // \App\Models\User::factory(10)->create();
 

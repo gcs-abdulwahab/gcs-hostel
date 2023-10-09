@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allocation', function (Blueprint $table) {
+        Schema::create('allocations', function (Blueprint $table) {
             $table->id();
 
             // room is allocated to many students
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('check_out')->nullable();
 
             // allocation status
-          //  $table->enum('status', ['active', 'inactive'])->default('active');
+            //  $table->enum('status', ['active', 'inactive'])->default('active');
 
             $table->timestamps();
         });

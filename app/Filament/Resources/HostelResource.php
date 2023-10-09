@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\HostelResource\Pages;
 use App\Filament\Resources\HostelResource\RelationManagers;
+use App\Filament\Resources\HostelResource\RelationManagers\RoomsRelationManager;
+use App\Filament\Resources\HostelResource\RelationManagers\StudentsRelationManager;
 use App\Models\Hostel;
 use Faker\Provider\ar_EG\Text;
 use Filament\Forms;
@@ -30,7 +32,7 @@ class HostelResource extends Resource
                     ->autofocus()
                     ->required()
                     ->unique(Hostel::class, 'name')
-                    ->max(255)
+                    
                     ->placeholder(__('Name')),
             ]);
     }
@@ -59,7 +61,8 @@ class HostelResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\RoomsRelationManager::class,
+            RoomsRelationManager::class,
+            StudentsRelationManager::class,
         ];
     }
 

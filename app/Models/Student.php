@@ -9,5 +9,11 @@ class Student extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
+    // students have been allocated to many rooms over the time
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class, 'allocations');
+    }
+
 }
