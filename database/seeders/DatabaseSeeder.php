@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call(HostelSeeder::class);
+        $this->call(StudentSeeder::class);
         $this->call(RoomSeeder::class);
 
 
