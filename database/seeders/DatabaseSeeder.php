@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     {
 
         $role_superadmin = Role::create(['name' => 'sadmin']);
-        $role_instituteadmin = Role::create(['name' => 'iadmin']);
+        $role_instituteadmin = Role::create(['name' => 'hadmin']);
 
 
         $super_user = User::create([
-            'name' => 'Admin Bilal',
+            'name' => 'Super Admin',
             'email' => 'sadmin@example.com',
             'password' => bcrypt('sadmin@example.com'),
         ]);
@@ -32,9 +32,9 @@ class DatabaseSeeder extends Seeder
 
 
         $user2 = User::create([
-            'name' => 'NON ADMIN',
-            'email' => 'iadmin@example.com',
-            'password' => bcrypt('iadmin@example.com'),
+            'name' => 'Hostel ADMIN',
+            'email' => 'hadmin@example.com',
+            'password' => bcrypt('hadmin@example.com'),
         ]);
         $user2->assignRole($role_instituteadmin);
 
