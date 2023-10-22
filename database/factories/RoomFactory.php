@@ -25,14 +25,17 @@ class RoomFactory extends Factory
 
 
         return [
-            'name' => $this->faker->name,
-            'description' => $this->faker->address,
+
+            // fake name should be like  Room-1, Room-2, Room-3, etc
+            'name' => 'Room-' . $this->faker->numberBetween(1,100),
+            // fake description
+            'description' => $this->faker->text(100),
             //capacity should be between 1 and 4
             'capacity' => $this->faker->numberBetween(1,4),
             // hostel id is the foreign key from the Hostel table
-            'hostel_id' => 1,
+            'hostel_id' => 1, // by default its HostelID 1
 
-            
+
         ];
     }
 }
