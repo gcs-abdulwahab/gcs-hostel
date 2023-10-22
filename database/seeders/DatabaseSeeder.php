@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'sadmin@example.com',
             'password' => bcrypt('sadmin@example.com'),
         ]);
-
         $super_user->assignRole($role_superadmin);
+
 
 
         $user2 = User::create([
@@ -36,14 +36,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'hadmin@example.com',
             'password' => bcrypt('hadmin@example.com'),
         ]);
+
         $user2->assignRole($role_hosteladmin);
 
 
-            User::factory(10)->create([
-                'password' => bcrypt('password'),
-            ])->each(function ($user) {
-                $user->assignRole('hadmin');
-            });
+
 
 
 
