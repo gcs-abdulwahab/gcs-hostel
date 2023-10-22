@@ -79,6 +79,8 @@ class RoomResource extends Resource
             'index' => Pages\ListRooms::route('/'),
             'create' => Pages\CreateRoom::route('/create'),
             'edit' => Pages\EditRoom::route('/{record}/edit'),
+            'availablerooms' => Pages\AvailableRooms::route('/availablerooms'),
+            'specialrooms' => Pages\SpecialRooms::route('/specialrooms'),
         ];
     }
 }
