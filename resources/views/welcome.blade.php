@@ -16,9 +16,10 @@
 </head>
 
 <body class="antialiased">
-    This is the welcome page :
 
-    <livewire:add-user />
+    This is the welcome page...... :
+
+    @livewire('list-users')
 
 
 </body>

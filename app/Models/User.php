@@ -51,4 +51,14 @@ class User extends Authenticatable  implements FilamentUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    // searchscope
+    public function scopeSearch($query, $val)
+    {
+        return $query
+            ->where('name', 'like', '%' . $val . '%');
+    }
+
+
 }
