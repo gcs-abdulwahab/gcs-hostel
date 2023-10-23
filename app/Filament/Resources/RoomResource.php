@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoomResource\Pages;
 use App\Filament\Resources\RoomResource\RelationManagers;
+use App\Filament\Resources\RoomResource\Widgets\RoomOverview;
 use App\Models\Room;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToSelect;
@@ -83,4 +84,17 @@ class RoomResource extends Resource
             'specialrooms' => Pages\SpecialRooms::route('/specialrooms'),
         ];
     }
+
+//RoomOverview
+
+public static function getWidgets(): array
+{
+    return [
+        RoomOverview::class,
+    ];
+}
+
+
+
+
 }
