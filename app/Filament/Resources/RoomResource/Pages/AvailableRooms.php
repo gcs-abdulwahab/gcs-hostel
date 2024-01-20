@@ -21,7 +21,7 @@ class AvailableRooms extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            RoomOverview::class,
+            RoomOverview::class ,
         ];
     }
 }
